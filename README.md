@@ -21,7 +21,9 @@ cd <repository-directory>
 npm install
 
 ## 3. Startserver and use postman for demos
+
 node server.js
+
 localhost:4000/api/<<preffered route for demos>>
 
 
