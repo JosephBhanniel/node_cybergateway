@@ -14,17 +14,31 @@ Before you begin, ensure you have the following installed:
 First, clone the repository to your local machine using Git.
 
 git clone <repository-url>
-cd <repository-directory>
+
+* Clone this repository:
+
+    ```bash
+    git clone https://github.com/JosephBhanniel/zepay_gateway.git
+    ```
+
+  ```bash
+   cd <repository-directory>
+    ```
+
 
 ## 2. Install Dependencies
-cd <repository-directory>
-npm install
+
+* Install the dependencies:
+
+    ```bash
+    npm install 
+     ```
 
 ## 3. Startserver and use postman for demos
 
 node server.js
 
+```bash
 localhost:4000/api/<<preffered route for demos>>
-
-
+ ```
 
