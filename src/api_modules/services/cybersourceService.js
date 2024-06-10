@@ -6,23 +6,6 @@ const configuration = require(filePath);
 const configObject = new configuration();
 const apiClient = new cybersourceRestApi.ApiClient();
 
-/*
-async function authorizePayment(paymentRequest) {
-    return new Promise((resolve, reject) => {
-        const instance = new cybersourceRestApi.PaymentsApi(configObject, apiClient);
-
-        instance.createPayment(paymentRequest, (error, data, response) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve(data);
-            }
-        });
-    });
-}
-*/
-
-
 
 async function authorizePayment(paymentRequest) {
     return new Promise((resolve, reject) => {
@@ -70,4 +53,56 @@ async function capturePayment(paymentId, captureRequest) {
     });
 }
 
-module.exports = { authorizePayment, capturePayment };
+
+//*************  Refund Payment Service **************************
+async function refundPayment(refundRequest, paymentId) {
+    return new Promise((resolve, reject) => {
+        const instance = new cybersourceRestApi.RefundApi(configObject, apiClient);
+
+        instance.refundPayment(refundRequest, paymentId, (error, data, response) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+}
+
+
+
+//*************  Authorization Reversal **************************
+
+async function processAuthorizationReversal(paymentId, reversalRequest) {
+    return new Promise((resolve, reject) => {
+        const instance = new cybersourceRestApi.ReversalApi(configObject, apiClient);
+
+        instance.authReversal(paymentId, reversalRequest, (error, data, response) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+}
+
+
+//*************  Authorization Reversal **************************
+
+async function processAuthorizationReversal(paymentId, reversalRequest) {
+    return new Promise((resolve, reject) => {
+        const instance = new cybersourceRestApi.ReversalApi(configObject, apiClient);
+
+        instance.mitReversal(reversalRequest, (error, data, response) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+}
+
+
+module.exports = { authorizePayment, capturePayment, refundPayment, processAuthorizationReversal };
